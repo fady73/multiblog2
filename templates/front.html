@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <a href = "/blog/newpost">Add a new post<a>
+		
+  <br>
+	<br>
+	<br>
+
+  {% for p in posts %}
+    {{ p.render() | safe }}
+    <br>
+		<br>
+
+    <div class="edit-delete-area">
+      <a class="edit-link" href="/blog/{{p.key().id()}}/edit">edit</a>
+      |
+      <a class="delete-link" href="/blog/{{p.key().id()}}/delete">delete</a>
+	  </div>
+
+		<br>
+
+    <div class="like-unlike-area">
+      <a class="like-link" href="/blog/{{p.key().id()}}/like">like</a>
+      |
+      <a class="unlike-link" href="/blog/{{p.key().id()}}/unlike">unlike</a>
+	  </div>
+
+		<br>
+
+    <div class="comment-area">
+      <a class="like-link" href="/blog/{{p.key().id()}}/newcomment">comment</a>
+			<span class="comment-count">({{p.comments.count()}})</span>
+	  </div>
+
+		<br>
+		<br>
+  {% endfor %}
+
+{% endblock %}

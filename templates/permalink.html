@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+
+	  {% for c in post.comments %}
+    {{ c.render() | safe }}
+
+    <div class="comment-edit-delete-area">
+      <a class="comment-edit-link" href="/blog/{{post.key().id()}}/commentedit/{{c.key().id()}}">edit</a>
+      |
+      <a class="comment-delete-link" href="/blog/{{post.key().id()}}/commentdelete/{{c.key().id()}}">delete</a>
+	  </div>
+
+		<br>
+  {% endfor %}
+
+{% endblock %}
